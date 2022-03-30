@@ -4,7 +4,7 @@ import Alert from './Alert';
 const getLocalStorage = () => {
   let list = localStorage.getItem('list');
   if (list) {
-    return (list = JSON.parse(localStorage.getItem('list')));
+    return (list = JSON.parse(localStorage.getItem('list')|| '{}'));
   } else {
     return [];
   }
@@ -15,13 +15,13 @@ function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: '', type: '' });
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:React.FormEvent) => {
     e.preventDefault();
     if (!name) {
       showAlert(true, 'danger', 'please enter value');
     } else if (name && isEditing) {
       setList(
-        list.map((item) => {
+        list.map((item:any) => {
           if (item.id === editID) {
             return { ...item, title: name };
           }
@@ -48,12 +48,12 @@ function App() {
     showAlert(true, 'danger', 'empty list');
     setList([]);
   };
-  const removeItem = (id) => {
+  const removeItem = (id:any) => {
     showAlert(true, 'danger', 'item removed');
-    setList(list.filter((item) => item.id !== id));
+    setList(list.filter((item:any) => item.id !== id));
   };
-  const editItem = (id) => {
-    const specificItem = list.find((item) => item.id === id);
+  const editItem = (id:any) => {
+    const specificItem = list.find((item:any) => item.id === id);
     setIsEditing(true);
     setEditID(id);
     setName(specificItem.title);

@@ -1,9 +1,9 @@
 import React from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
-const List = ({ items, removeItem, editItem }) => {
+const List = ({ items, removeItem, editItem } :any) => {
   return (
     <div className='grocery-list'>
-      {items.map((item) => {
+      {items.map((item:any) => {
         const { id, title } = item;
         return (
           <article className='grocery-item' key={id}>
